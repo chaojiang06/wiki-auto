@@ -12,7 +12,7 @@ This repository contains the code and resources from the following [paper](https
 
 
 ## Instructions: 
-1. To request the Newsela-Manual and Newsela-Auto datasets, please please first obtain access to the [Newsela
+1. To request the Newsela-Manual and Newsela-Auto datasets, please first obtain access to the [Newsela
 corpus](https://newsela.com/data/), then contact the authors.
 
 1. Please use Python 3 to run the code.
