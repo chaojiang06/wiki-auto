@@ -8,9 +8,7 @@ import torch
 from aligner import *
 
 torch.manual_seed(1234)
-# tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-# bert_model = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
-# bert_model = bert_model.to(my_device)
+
 
 
 class NeuralWordAligner(nn.Module):
@@ -25,7 +23,6 @@ class NeuralWordAligner(nn.Module):
 
         self.mlp1 = nn.Sequential(nn.Linear(768, 768), nn.Tanh(), nn.Linear(768, 1))
         self.mlp2 = nn.Sequential(nn.Linear(6, 1))
-        self.sent_pait_to_cls_dict = sent_pait_to_cls_dict
 
         self.transition_matrix_dict = {}
         for len_B in range(max_span_size, 50, 1):
@@ -281,22 +278,6 @@ class NeuralWordAligner(nn.Module):
         focusCube = torch.ones(len_A, len_B, 768)
         focusCube_A = torch.ones(len_A, len_B, 768)
         focusCube_B = torch.ones(len_A, len_B, 768)
-
-        # sent_pair_cls_dict = load_pickle_file("")
-
-        sent_A_list = []
-        sent_B_list = []
-        for iii in range(len_A):
-            for jjj in range(len_B):
-                sent_A_list.append(raw_input_A[iii])
-                sent_B_list.append(raw_input_B[jjj])
-                aa = self.sent_pait_to_cls_dict[(raw_input_A[iii], raw_input_B[jjj])]
-                bb = get_tensor_from_sent_pair([raw_input_B[jjj]], [raw_input_A[iii]], \
-                                          self.bert_for_sent_seq_model, self.tokenizer)
-                if torch.allclose(aa, bb.cpu(), atol=1e-04) == False:
-                    print("aa != bb")
-
-
 
         tensor_matrix = get_tensor_from_sent_pair(sent_B_list, sent_A_list , \
                         self.bert_for_sent_seq_model, self.tokenizer)

@@ -14,21 +14,9 @@ random.seed(seed)
 np.random.seed(seed)
 torch.manual_seed(seed)
 max_span_size = 1
-Wuwei_server = torch.cuda.is_available()
-if Wuwei_server:
-    print('CUDA is available!')
-    my_device = torch.device('cuda:0')
-    torch.cuda.manual_seed_all(seed)
-    base_path = expanduser("~") + '/Documents/neural-word-aligner/'  # Wuwei's server
-    embedding_path = expanduser("~") + '/pytorch/DeepPairWiseWord/VDPWI-NN-Torch/data/glove'  # glove path
-else:
-    my_device = torch.device('cpu')
-    if False:
-        base_path = expanduser("~") + '/Documents/neural-word-aligner/'
-        embedding_path = expanduser("~") + '/pytorch/DeepPairWiseWord/VDPWI-NN-Torch/data/glove'
-    else:
-        base_path = expanduser("~") + '/Documents/research/twitterPPDB/neural-word-aligner/'
-        embedding_path = expanduser("~") + '/Documents/research/pytorch/DeepPairWiseWord/VDPWI-NN-Torch/data/glove'
+
+my_device = torch.device('cuda:0')
+torch.cuda.manual_seed_all(seed)
 
 
 def convert_stateID_to_spanID(stateID, sent_length):  # 0 is NULL state

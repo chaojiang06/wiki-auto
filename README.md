@@ -4,11 +4,11 @@ This repository contains the code and resources from the following [paper](https
 
 
 ## Repo Structure: 
-1. ```aligner```: Code for CRF sentence aligner.
+1. ```aligner```: Code for neural CRF sentence aligner.
 
-1. ```wiki-manual```: The Wiki-Manual dataset. 
+1. ```wiki-manual```: The Wiki-Manual dataset. The definitions of columns are ```label, the index of simple sentence, the index of complex sentence, simple sentence, complex sentence```.
 
-1. ```wiki-auto```: The Wiki-Auto dataset. 
+1. ```wiki-auto```: The Wiki-Auto dataset. ```src``` are the complex sentences, and ```dst``` are the simple sentences.
 
 
 ## Instructions: 
