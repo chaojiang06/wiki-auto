@@ -21,11 +21,11 @@ corpus](https://newsela.com/data/), then contact the authors.
 ## Citation
 Please cite if you use the above resources for your research
 ```
-@InProceedings{ACL-2020-Jiang,
-  author = 	"Jiang, Chao and Maddela, Mounica and Lan, Wuwei and Zhong, Yang and Xu, Wei",
-  title = 	"Neural CRF Model for Sentence Alignment in Text Simplification",
-  booktitle = 	"Proceedings of the Association for Computational Linguistics (ACL)",
-  year = 	"2020",
+@inproceedings{jiang2020neural,
+  title={Neural CRF Model for Sentence Alignment in Text Simplification},
+  author={Jiang, Chao and Maddela, Mounica and Lan, Wuwei and Zhong, Yang and Xu, Wei},
+  booktitle={Proceedings of the Association for Computational Linguistics (ACL)},
+  year={2020}
 }
 ```
 
