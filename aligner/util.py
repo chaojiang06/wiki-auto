@@ -1,10 +1,8 @@
 from __future__ import division
-import random
-import torch
-import numpy as np
-from os.path import expanduser
-import csv
 from aligner import *
+import random
+import numpy as np
+import torch
 from torch.utils.data import (DataLoader, SequentialSampler,
                               TensorDataset)
 import pickle
@@ -17,7 +15,6 @@ max_span_size = 1
 
 my_device = torch.device('cuda:0')
 torch.cuda.manual_seed_all(seed)
-
 
 def convert_stateID_to_spanID(stateID, sent_length):  # 0 is NULL state
     stateID = stateID - 1
@@ -65,7 +62,7 @@ def read_aligned_paragraph_data(path, task1_or_task2, simple_to_complex_or_rever
     for paragraph_alignment in paragraph_alignments:
         lsents.append(paragraph_alignment['simple_side_sents'])
         rsents.append(paragraph_alignment['complex_side_sents'])
-        if task1_or_task2 == 'task2':
+        if task1_or_task2 == 'task1':
             labels.append(paragraph_alignment['alignment_in_new_format'] + \
                           paragraph_alignment['partial_alignment_in_new_format'])
         else:
@@ -114,7 +111,7 @@ def read_inperfect_aligned_paragraph_data(path, task1_or_task2, simple_to_comple
     for paragraph_alignment in paragraph_alignments:
         lsents.append(paragraph_alignment['simple_side_sents'])
         rsents.append(paragraph_alignment['complex_side_sents'])
-        if task1_or_task2 == 'task2':
+        if task1_or_task2 == 'task1':
             labels.append(paragraph_alignment['alignment_in_new_format'] + \
                           paragraph_alignment['partial_alignment_in_new_format'])
         else:

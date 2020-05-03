@@ -5,28 +5,29 @@ from util import *
 from datetime import timedelta
 from datetime import datetime
 import time
-from tqdm import tqdm
 from pytorch_transformers import (BertConfig,
                                   BertForSequenceClassification, BertTokenizer)
-if __name__ == '__main__':
 
+import argparse
+
+def main(args):
     print("start running")
     train_set = read_aligned_paragraph_data(
-        "/path/to/gold_trainset", \
-        "task2", "simple_to_complex")
+        args.train_gold, \
+        "task1", "simple_to_complex")
     dev_set = read_aligned_paragraph_data(
-        "/path/to/gold_devset", \
-        "task2", "simple_to_complex")
+        args.dev_gold, \
+        "task1", "simple_to_complex")
     test_set = read_aligned_paragraph_data(
-        "/path/to/gold_testset", \
-        "task2", "simple_to_complex")
+        args.test_gold, \
+        "task1", "simple_to_complex")
 
     dev_set_inperfect = read_inperfect_aligned_paragraph_data(
-        "/path/to/real_devset", \
-        "task2", "simple_to_complex")
+        args.dev_real, \
+        "task1", "simple_to_complex")
     test_set_inperfect = read_inperfect_aligned_paragraph_data(
-        "/path/to/real_testset", \
-        "task2", "simple_to_complex")
+        args.test_real, \
+        "task1", "simple_to_complex")
 
 
     # Bert related
@@ -36,13 +37,14 @@ if __name__ == '__main__':
     config_class, model_class, tokenizer_class = MODEL_CLASSES['bert']
 
     device = torch.device("cuda" )
-    tokenizer = tokenizer_class.from_pretrained('/path/to/pre-trained-tokenizer',
+
+    tokenizer = tokenizer_class.from_pretrained(args.BERT_folder,
                                                 do_lower_case=True)
-    bert_for_sent_seq_model = model_class.from_pretrained('/path/to/pre-trained-model', \
+    bert_for_sent_seq_model = model_class.from_pretrained(args.BERT_folder, \
                                         output_hidden_states=True)
     bert_for_sent_seq_model.to(device)
-
-
+    # bert_for_sent_seq_model.eval()
+    # Bert related end
 
 
     print('Training set size: %d' % len(train_set[0]))
@@ -52,8 +54,7 @@ if __name__ == '__main__':
     num_epochs = 3
 
     lsents, rsents, labels, golden_sequence, paragraph_alignments = train_set
-    model = NeuralWordAligner(sent_pait_to_cls_dict="", \
-                              bert_for_sent_seq_model = bert_for_sent_seq_model, \
+    model = NeuralWordAligner(bert_for_sent_seq_model = bert_for_sent_seq_model, \
                               tokenizer = tokenizer)
 
 
@@ -103,7 +104,6 @@ if __name__ == '__main__':
                                                             dev_set_inperfect, model)
         print('Dev score: precision: %.6f  recall: %.6f  f1: %.6f' % (precision, recall, f1))
 
-
         precision, recall, f1, testset_predicted_alignment = generate_test_output_crf_sentence_alignment(test_set, model)
         print('Test score: precision: %.6f  recall: %.6f  f1: %.6f' % (precision, recall, f1))
 
@@ -119,3 +119,19 @@ if __name__ == '__main__':
         print('Epoch ' + str(epoch) + ' finished within ' + str(
             timedelta(seconds=elapsed_time)) + ', and current time:' + str(datetime.now()))
         model.train()
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description=__doc__)
+
+    parser.add_argument('--train_gold', type=str, default='', required=True, help='Path to the gold training data.')
+    parser.add_argument('--dev_gold', type=str, default='', required=True, help='Path to the gold dev data.')
+    parser.add_argument('--test_gold', type=str, default='', required=True, help='Path to the gold test data.')
+
+    parser.add_argument('--dev_real', type=str, default='', required=True, help='Path to the real dev data.')
+    parser.add_argument('--test_real', type=str, default='', required=True, help='Path to the real test data.')
+
+    parser.add_argument('--BERT_folder', type=str, default='', required=True, help='Path to the fine-tuned BERT folder.')
+
+    args = parser.parse_args()
+    main(args)

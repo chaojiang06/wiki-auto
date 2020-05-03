@@ -1,18 +1,15 @@
 from __future__ import division
+from util import *
+from aligner import *
+import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
-import torch.nn as nn
-from util import *
 import numpy as np
-import torch
-from aligner import *
-
 torch.manual_seed(1234)
 
 
-
 class NeuralWordAligner(nn.Module):
-    def __init__(self, sent_pait_to_cls_dict ,bert_for_sent_seq_model, tokenizer):
+    def __init__(self ,bert_for_sent_seq_model, tokenizer):
         super(NeuralWordAligner, self).__init__()
 
 
@@ -278,6 +275,18 @@ class NeuralWordAligner(nn.Module):
         focusCube = torch.ones(len_A, len_B, 768)
         focusCube_A = torch.ones(len_A, len_B, 768)
         focusCube_B = torch.ones(len_A, len_B, 768)
+
+        # sent_pair_cls_dict = load_pickle_file("")
+
+        sent_A_list = []
+        sent_B_list = []
+        for iii in range(len_A):
+            for jjj in range(len_B):
+                sent_A_list.append(raw_input_A[iii])
+                sent_B_list.append(raw_input_B[jjj])
+
+
+
 
         tensor_matrix = get_tensor_from_sent_pair(sent_B_list, sent_A_list , \
                         self.bert_for_sent_seq_model, self.tokenizer)
