@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style type="text/css">
+    @import "main.css";
+    </style>
+
+    <title>Sentence Alignment Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+  </head>
+
+  <body>
+    <div class="container text-center">
+      <h1>Sentence Alignment Viewer</h1>
+    </div>
+      
+
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-4">
+        <h4>Step 1: Setup Alignment File Path</h4>
+        <label for="email">Alignment File Path: </label>
+        <input class="col-6" type="file" id="alignment_file_path" onchange="alignment_file_path_load(this)">
+      </div>
+
+      <div class="col-7">
+      
+        <h4>Step 2: Setup Article and Readability (Please click load)</h4>
+        <div>
+          Article Name: 
+          <select id="article_name" onchange="make_load_button_red_bold()" class="col-3">
+          </select>
+
+          &nbsp&nbsp Article 1 Readability: 
+          <select id="article_1_level" onchange="make_load_button_red_bold()" class="col-1"> 
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+
+          &nbsp&nbsp Article 2 Readability: 
+          <select id="article_2_level" onchange="make_load_button_red_bold()" class="col-1"> 
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+
+          <button id="load_file_button" onclick="set_article_name_and_level()">Load</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-5 text-center h5">Article 1</div>
+      <div  class="col-2 text-right  h5">Article 2</div>
+      <div  class="col-1 text-right  h5"></div>
+      <button class="col-2" id="submit_change_button" onclick="submit_change()">Submit Change</button>
+      <button class="col-1" id="save_file_button" onclick="save_file()">Save</button>
+      
+    </div>
+
+    <div class="row ">
+      <div  class="col-1 text-right  h5"></div>
+      <div id="article_1_show" class="col-5 pre-scrollable bg-lavender" style="max-height: 75vh"> 
+      </div>
+
+      <div id="article_2_show" class="col-5 pre-scrollable bg-lavenderblush" style="max-height: 75vh">
+      </div>
+      <div  class="col-1 text-right  h5"></div>
+    </div>
+
+    </br>
+
+  
+  </body>
+</html>
+
+
