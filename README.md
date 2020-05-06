@@ -9,6 +9,7 @@ This repository contains the code and resources from the following [paper](https
 1. ```wiki-manual```: The Wiki-Manual dataset. The definitions of columns are label, the index of simple sentence, the index of complex sentence, simple sentence, complex sentence.
 
 1. ```wiki-auto```: The Wiki-Auto dataset. ```.src``` are the complex sentences, and ```.dst``` are the simple sentences.
+1. ```annotation_tool```: The tool for in-house annotators to annotate the sentence alignment.
 
 
 ## Instructions: 
