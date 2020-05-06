@@ -1,6 +1,6 @@
 # Neural CRF Model for Sentence Alignment in Text Simplification
 
-This repository contains the code and resources from the following [paper](https://cocoxu.github.io/publications/ACL2020_sentence_alignment_preprint.pdf)
+This repository contains the code and resources from the following [paper](https://arxiv.org/abs/2005.02324)
 
 
 ## Repo Structure: 
