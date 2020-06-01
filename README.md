@@ -18,6 +18,9 @@ corpus](https://newsela.com/data/), then contact the authors.
 
 1. Please use Python 3 to run the code.
 
+1. We also have pre-processed Wikipedia data, alignments between complex and simple Wikipedia articles, and paragraph alignments between Wikipedia articlr pairs, please contact us if you want to use that data.
+
+1. We also have paragraph alignments between Newsela article pairs, please contact us if you want to use that data.
 
 ## Citation
 Please cite if you use the above resources for your research
