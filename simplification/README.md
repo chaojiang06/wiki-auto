@@ -13,7 +13,7 @@ The outputs of BERT-initialized Transformer and other baselines are shared in `s
 The code is based on [fairseq](https://github.com/pytorch/fairseq) toolkit. It requires PyTorch version >= 1.0.0 and 
 Python version >= 3.5. For training new models, you'll also need an NVIDIA GPU and [NCCL](https://github.com/NVIDIA/nccl)
 
-Please follow the instructions here to install PyTorch: https://github.com/pytorch/pytorch#installation.
+If you do not have PyTorch, please follow the instructions here to install: https://github.com/pytorch/pytorch#installation.
 
 And then install fairseq from the source code shared in the repository.
 ```
@@ -63,7 +63,7 @@ sh generate.sh <binarized data directory> <checkpoint> <output file name> <GPU d
 creates a binarized fairseq dataset.
 
 ```
-sh preprocess.sh <raw data directory> <tokenized data directory>  <binarized data directory>
+sh preprocess_lstm.sh <raw data directory> <tokenized data directory>  <binarized data directory>
 
 # The script assumes that the raw data has the following format
 # <directory>/
@@ -79,7 +79,7 @@ sh preprocess.sh <raw data directory> <tokenized data directory>  <binarized dat
 2. Download the checkpoint for LSTM from [here](). You can perform generation using the following command.
  
 ```
-sh generate.sh <binarized data directory> <checkpoint> <output file name> <GPU device id> <split>
+sh generate_lstm.sh <binarized data directory> <checkpoint> <output file name> <GPU device id> <split>
 
 <checkpoint> refers to the path of the checkpoint
 <split> takes one of the following values: train, valid, test
