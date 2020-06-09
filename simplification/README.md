@@ -76,7 +76,7 @@ CUDA_VISIBLE_DEVICES=<GPU1,GPU2...> python3  train.py <binarized data path from 
 
 All the model parameters are specified in ``my_model/__init__.py`` file.
 
-3. Follow the step 3 described in the above section for Transformer.  You can generate using the best checkpoint according to the cross-entropy loss, i.e. ``checkpoint_best.pt`` in the specified checkpoint directory. Alternatively, you can also choose the best checkpoint according to the SARI score on the validation dataset.
+3. Follow the step 2 described in the previous section.  You can generate using the best checkpoint according to the cross-entropy loss, i.e. ``checkpoint_best.pt`` in the specified checkpoint directory. Alternatively, you can also choose the best checkpoint according to the SARI score on the validation dataset.
 
 
 **LSTM**
@@ -108,7 +108,7 @@ CUDA_VISIBLE_DEVICES=<GPU1,GPU2...> python3 train.py  <binarized data directory>
     
 ```
 
-3. You can perform generation using the following command.
+3. You can perform generation using the following command. You can generate using the best checkpoint according to the cross-entropy loss, i.e. ``checkpoint_best.pt`` in the specified checkpoint directory.
  
 ```
 sh generate_lstm.sh <binarized data directory> <checkpoint> <output file name> <GPU device id> <split>
