@@ -10,6 +10,7 @@ This repository contains the code and resources from the following [paper](https
 
 1. ```wiki-auto```: The Wiki-Auto dataset. ```.src``` are the complex sentences, and ```.dst``` are the simple sentences.
 1. ```annotation_tool```: The tool for in-house annotators to annotate the sentence alignment.
+1. ```simplification```: Code for text simplification experiments.
 
 
 ## Instructions: 
