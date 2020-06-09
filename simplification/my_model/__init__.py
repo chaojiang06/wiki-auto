@@ -35,7 +35,7 @@ def my_dress(args):
     args.adaptive_softmax_cutoff = getattr(args, 'adaptive_softmax_cutoff', '10000,50000,200000')
 
 
-@register_model_architecture('transformer', 'bert')
+@register_model_architecture('transformer', 'bert_rand')
 def base_architecture(args):
     args.encoder_embed_path = getattr(args, 'encoder_embed_path', None)
     args.decoder_embed_path = getattr(args, 'decoder_embed_path', None)

@@ -116,7 +116,7 @@ class TransformerModel(FairseqEncoderDecoderModel):
         parser.add_argument('--adaptive-softmax-dropout', type=float, metavar='D',
                             help='sets adaptive softmax dropout for the tail projections')
         parser.add_argument('--bert-path', type=str, metavar='STR',
-                            help='path to pre-trained bert embedding')
+                            help='path to pre-trained bert embedding', default="")
         # fmt: on
 
     @classmethod
@@ -169,7 +169,8 @@ class TransformerModel(FairseqEncoderDecoderModel):
         decoder = cls.build_decoder(args, tgt_dict, decoder_embed_tokens)
 
         model =  TransformerModel(encoder, decoder)
-        model = initialize_with_bert(args.bert_path, model)
+        if len(args.bert_path) > 0:
+            model = initialize_with_bert(args.bert_path, model)
         return model
 
     @classmethod

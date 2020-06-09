@@ -16,6 +16,6 @@ echo "Generating using checkpoint ${CP}"
 CUDA_VISIBLE_DEVICES=$4 python3 generate.py $DATA_BIN --path $CP \
     --batch-size 32  --beam 1 --nbest 1 --user-dir my_model/ --print-alignment --gen-subset $SPLIT > $OUTPUT.aner
 
-python3 post_process/bpe.py  --out_anon $OUTPUT.aner --denon $OUTPUT --ignore_lines 5 --wp 1
+python3 postprocess/bpe.py  --out_anon $OUTPUT.aner --denon $OUTPUT --ignore_lines 5 --wp 1
 
 rm $OUTPUT.aner

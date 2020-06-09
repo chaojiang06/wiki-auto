@@ -46,7 +46,7 @@ sh preprocess.sh <raw data directory> <tokenized data directory>  <binarized dat
 # .src files contain complex sentences and .dst files contain simple sentences.
 ```
 
-2. Download the Transformer checkpoint for [newsela]() or [wiki](). You can perform generation using the following command.
+2. Download the Transformer checkpoint for [newsela](http://web.cse.ohio-state.edu/~maddela.4/acl2020/checkpoint_newsela_auto.pt) or [wiki](http://web.cse.ohio-state.edu/~maddela.4/acl2020/checkpoint_wiki_auto.pt). You can perform generation using the following command.
  
 ```
 sh generate.sh <binarized data directory> <checkpoint> <output file name> <GPU device id> <split>
@@ -55,35 +55,6 @@ sh generate.sh <binarized data directory> <checkpoint> <output file name> <GPU d
 <split> takes one of the following values: train, valid, test
 ```
 
-
-**LSTM**
-
-
-1. You need to preprocess the data using the ``preprocess.sh`` script. First, the script performs BERT Tokenization and then 
-creates a binarized fairseq dataset.
-
-```
-sh preprocess_lstm.sh <raw data directory> <tokenized data directory>  <binarized data directory>
-
-# The script assumes that the raw data has the following format
-# <directory>/
-#   |-- train.src
-#   |-- train.dst
-#   |-- test.src
-#   |-- test.dst
-#   |-- valid.src
-#   |-- valid.dst
-# .src files contain complex sentences and .dst files contain simple sentences.
-```
-
-2. Download the checkpoint for LSTM from [here](). You can perform generation using the following command.
- 
-```
-sh generate_lstm.sh <binarized data directory> <checkpoint> <output file name> <GPU device id> <split>
-
-<checkpoint> refers to the path of the checkpoint
-<split> takes one of the following values: train, valid, test
-```
 
 # Training 
 
@@ -98,7 +69,7 @@ and unzip the folder.  Then, train using the following command:
 
 ```
 CUDA_VISIBLE_DEVICES=<GPU1,GPU2...> python3  train.py <binarized data path from previous step> --save-dir <checkpoint directory>  \
-    --lr 0.0001 --optimizer adam  -a bert --max-update 200000 --user-dir my_model --batch-size 32  \
+    --lr 0.0001 --optimizer adam  -a bert_rand --max-update 200000 --user-dir my_model --batch-size 32  \
     --lr-scheduler inverse_sqrt --warmup-updates 40000 --max-source-positions 512 --max-target-positions 512 \
     --bert_path uncased_L-12_H-768_A-12/bert_model.ckpt
 ```
@@ -110,13 +81,42 @@ All the model parameters are specified in ``my_model/__init__.py`` file.
 
 **LSTM**
 
+1. You need to preprocess the data using the ``preprocess_lstm.sh`` script. First, the script anonymizes entities  and then creates a binarized fairseq dataset.
+
 ```
-CUDA_VISIBLE_DEVICES=$3 python3 train.py  $DATA_BIN  -a encdeca  \
-    --max-epoch 30 --lr 0.001 --optimizer adam --save-dir  $CP \
+sh preprocess_lstm.sh <raw data directory> <anonymized data directory>  <binarized data directory>
+
+# The script assumes that the raw data has the following format
+# <directory>/
+#   |-- train.src
+#   |-- train.dst
+#   |-- test.src
+#   |-- test.dst
+#   |-- valid.src
+#   |-- valid.dst
+# .src files contain complex sentences and .dst files contain simple sentences.
+```
+
+2. Train using the following command
+
+
+```
+CUDA_VISIBLE_DEVICES=<GPU1,GPU2...> python3 train.py  <binarized data directory>  -a encdeca  \
+    --max-epoch 30 --lr 0.001 --optimizer adam --save-dir  <checkpoint folder path> \
     --user-dir my_model --batch-size 96 \
     --clip-norm 5 --seed 13
     
 ```
+
+3. You can perform generation using the following command.
+ 
+```
+sh generate_lstm.sh <binarized data directory> <checkpoint> <output file name> <GPU device id> <split>
+
+<checkpoint> refers to the path of the checkpoint
+<split> takes one of the following values: train, valid, test
+```
+
 
 # Citation
 
