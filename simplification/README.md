@@ -122,7 +122,7 @@ sh generate_lstm.sh <binarized data directory> <checkpoint> <output file name> <
 
 If you use any of these resources, please cite fairseq and our paper:
 
-```
+```bibtex
 @inproceedings{jiang2020neural,
   title={Neural CRF Model for Sentence Alignment in Text Simplification},
   author={Jiang, Chao and Maddela, Mounica and Lan, Wuwei and Zhong, Yang and Xu, Wei},
