@@ -1,3 +1,5 @@
+## Wiki Auto Dataset
+
 Wiki-Auto provides a set of aligned sentences from English Wikipedia and Simple English Wikipedia as a resource to train sentence simplification systems. We first trained our Neural CRF alignment model on the Wiki-Manual dataset and then extracted aligned sentence pairs from the 138,095 parallel articles.Here, we provide the raw Wiki-Auto dataset with alignment information and three versions of preprocessed Wiki-Auto datasets that can be directly used to train the generation systems.
 
 
