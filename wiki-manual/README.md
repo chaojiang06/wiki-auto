@@ -4,6 +4,8 @@ Here we provide the full version of `Wiki-manual` dataset for replicating the pe
 
 The labels come from crowd-sourcing annotation, and dev / test sets have been further manually corrected by human annotator under binary labels `(aligned + partialAligned v.s. notAligned)`.
 
+Due to file size limit, we put the `train.tsv` at the wiki-manual folder of this [Dropbox folder](https://www.dropbox.com/sh/ohqaw41v48c7e5p/AADb6_qWCwgHvsCqg121cK9Ma?dl=0).
+
 ## Format
 Each line is in the format of `<label>+"\t"+<simple-sent-index>"\t"+<complex-sent-index>+"\t"<simple-sent>+"\t"<complex-sent>+"\t"<GLEU-score>`.
 
