@@ -14,7 +14,9 @@ The code is designed to work out-of-box with Newsela data. Due to permission res
 
 Once you got the data, you can use the followiong command to run the code:
 
-```python aligner.py  --train_gold newsela-processed-file/train_perfect_paragraph_alignment.pkl   --dev_gold newsela-processed-file/dev_perfect_paragraph_alignment.pkl    --test_gold newsela-processed-file/test_perfect_paragraph_alignment.pkl    --dev_real newsela-processed-file/dev_inperfect_paragraph_alignment.pkl   --test_real newsela-processed-file/test_inperfect_paragraph_alignment.pkl --BERT_folder wiki-auto-dropbox/aligner-checkpoint-newsela```
+```
+python aligner.py  --train_gold newsela-processed-file/train_perfect_paragraph_alignment.pkl   --dev_gold newsela-processed-file/dev_perfect_paragraph_alignment.pkl    --test_gold newsela-processed-file/test_perfect_paragraph_alignment.pkl    --dev_real newsela-processed-file/dev_inperfect_paragraph_alignment.pkl   --test_real newsela-processed-file/test_inperfect_paragraph_alignment.pkl --BERT_folder wiki-auto-dropbox/aligner-checkpoint-newsela
+```
 
 The processed data for Wiki-Manual is in the above folder. 
 
