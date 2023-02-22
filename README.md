@@ -14,6 +14,8 @@ This repository contains the code and resources from the following [paper](https
 4. ```simplification```: Code for text simplification experiments.
 
 ## Checkpoints
+### Update on Feb. 22, 2023
+We upload all fine-tuned BERT checkpoints to huggingface hub, and provide [a sample code](https://colab.research.google.com/drive/1-6hWzTIgrEMrcervG_ANqrf1o2CugnfS?usp=sharing) to use them.
 1. We released the checkpoints of ```BERT``` model fine-tuned on Newsela-Manual and Wiki-Manual datasets. They are trained using the Hugging Face implementation of ```BERT_base``` architecture in the package ```pytorch-transformers==1.1.0```. [```BERT_newsela```](https://drive.google.com/file/d/1xL9KS8A-_g4dcOapW5Z3I-3g8GBqUQkP/view?usp=sharing) and [```BERT_wiki```](https://drive.google.com/file/d/1I43F4OMkCvTUMtTd9Ft3P0hGiQLcFjlT/view?usp=sharing).
 1. If you want to align other monolingual parallel data, please try the fine-tuned BERT models. They should be able to achieve competitive performance. The performance boost of adding the neural CRF model is related to the structure of the articles. We have some experience in designing the paragraph alignment algorithm and using neural CRF model to align sentences, feel free to contact us if you want to have a discussion.
 1. We also released the code for our neural CRF sentence alignment model, you can use it to train your own model.
